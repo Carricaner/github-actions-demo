@@ -14,6 +14,13 @@ jobs:
       # which gives you access to the npm command.
       - uses: actions/setup-node@v2
         with:
-          node-version: '14'
-      - run: npm install -g bats
-      - run: bats -v
+          node-version: '12'
+      - run: npm install
+      - name: Hello world action step
+        id: hello
+        uses: darrenli1256/hello-world-javascript-action@v1.1
+        with:
+          who-to-greet: 'Darren Li'
+      # Use the output from the `hello` step
+      - name: Get the output time
+        run: echo "The time was ${{ steps.hello.outputs.time }}"
