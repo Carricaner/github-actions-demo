@@ -15,10 +15,11 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '12'
-      - run: npm install
+      - name: Install node dependencies
+        run: npm install
       - name: Hello world action step
         id: hello
-        uses: darrenli1256/hello-world-javascript-action@v1.1
+        uses: actions/hello-world-javascript-action@main
         with:
           who-to-greet: 'Darren Li'
       # Use the output from the `hello` step
