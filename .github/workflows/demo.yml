@@ -1,4 +1,4 @@
-name: demo
+name: demo1
 
 on: [push]
 
@@ -17,8 +17,9 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '12'
-      - name: Install node dependencies
-        run: npm install
+      - name: Install node dependencies by running script
+        run: ./.github/scripts/npm-install.sh
+        shell: bash
       - name: Hello world action step
         id: hello
         # Here, after @, we can specify tag, SHAs or branch as indicator of which version to use.

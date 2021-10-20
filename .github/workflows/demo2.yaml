@@ -1,4 +1,4 @@
-name: demo
+name: demo2
 
 on: [push]
 
@@ -9,6 +9,7 @@ jobs:
       DAY_OF_WEEK: Mon
     steps:
       - name: Echo env vars
+        if: ${{ env.DAY_OF_WEEK == 'Mon' }}
         run: |
           echo "Print DAY_OF_WEEK = $DAY_OF_WEEK"
           echo "Print DB hotst = $POSTGRES_HOST"
