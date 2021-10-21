@@ -29,3 +29,17 @@ jobs:
       # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
+  demo1-job2:
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Write sth to a file
+        run: |
+          expr 1 + 1 > output.log
+        shell: bash
+      - name: Upload output file
+        uses: actions/upload-artifact@v2
+        with:
+          name: output-log-file
+          path: output.log
+
+          
