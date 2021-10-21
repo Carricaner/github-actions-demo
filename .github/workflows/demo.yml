@@ -36,10 +36,16 @@ jobs:
         run: |
           expr 1 + 1 > output.log
         shell: bash
-      - name: Upload output file
+      - name: Upload an artifect
         uses: actions/upload-artifact@v2
         with:
           name: output-log-file
           path: output.log
+          # Specify artifect retention days
+          retention-days: 5
+      - name: Download a single artifact
+        uses: actions/download-artifact@v2
+        # It is useful to download all artifects by not adding with tag below.
+        with:
+          name: output-log-file
 
-          
