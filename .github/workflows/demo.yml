@@ -3,7 +3,7 @@ name: demo1
 on: [push]
 
 jobs:
-  customer-action-demo:
+  demo1:
     runs-on: ubuntu-latest
     steps:
       # The uses keyword tells the job to retrieve v2 of the community action named actions/checkout@v2. 

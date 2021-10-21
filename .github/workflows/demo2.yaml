@@ -3,10 +3,8 @@ name: demo2
 on: [push]
 
 jobs:
-  customer-action-demo:
-    runs-on: ubuntu-latest
-    env: 
-      DAY_OF_WEEK: Mon
+  demo2:
+    runs-on: [ubuntu-latest]
     steps:
       - name: Echo default vars
         run: |
@@ -17,6 +15,11 @@ jobs:
           echo "Github API URL: $GITHUB_API_URL"
           echo "Runner name: $RUNNER_NAME"
           echo "Runner OS: $RUNNER_OS"
+  demo2-job2:
+    runs-on: [ubuntu-latest]
+    env: 
+      DAY_OF_WEEK: Mon
+    steps:
       - name: Echo custom vars
         if: ${{ env.DAY_OF_WEEK == 'Mon' }}
         run: |
