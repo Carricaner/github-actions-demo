@@ -8,9 +8,19 @@ jobs:
     env: 
       DAY_OF_WEEK: Mon
     steps:
-      - name: Echo env vars
+      - name: Echo default vars
+        run: |
+          echo "Some default env vars:"
+          echo "Workflow name: $GITHUB_WORKFLOW"
+          echo "GitHub Repo: $GITHUB_REPOSITORY"
+          echo "Github server URL: $GITHUB_SERVER_URL"
+          echo "Github API URL: $GITHUB_API_URL"
+          echo "Runner name: $RUNNER_NAME"
+          echo "Runner OS: $RUNNER_OS"
+      - name: Echo custom vars
         if: ${{ env.DAY_OF_WEEK == 'Mon' }}
         run: |
+          echo "Webhook event: $GITHUB_EVENT_NAME"
           echo "Print DAY_OF_WEEK = $DAY_OF_WEEK"
           echo "Print DB hotst = $POSTGRES_HOST"
           echo "Print DB port = $POSTGRES_PORT"
