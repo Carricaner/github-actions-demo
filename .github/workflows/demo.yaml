@@ -3,6 +3,7 @@ name: demo1
 on: [push]
 
 jobs:
+  # By default, the jobs in your workflow all run in parallel at the same time.
   demo1:
     runs-on: ubuntu-latest
     steps:
