@@ -20,6 +20,8 @@ jobs:
   job_2:
     name: Multiply by 9
     # Specify needs tag to wait for specific job to be done.
+    # If one of the jobs fails, all dependent jobs are skipped
+    # However, if you need the jobs to continue, you can define this using the if conditional statement.
     needs: job_1
     runs-on: windows-latest
     steps:

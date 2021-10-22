@@ -3,8 +3,10 @@ name: demo2
 on: [push]
 
 jobs:
-  demo2:
+  Job_1:
     runs-on: [ubuntu-latest]
+    env: 
+      DAY_OF_WEEK: Mon
     steps:
       - name: Echo default vars
         run: |
@@ -15,11 +17,6 @@ jobs:
           echo "Github API URL: $GITHUB_API_URL"
           echo "Runner name: $RUNNER_NAME"
           echo "Runner OS: $RUNNER_OS"
-  demo2-job2:
-    runs-on: [ubuntu-latest]
-    env: 
-      DAY_OF_WEEK: Mon
-    steps:
       - name: Echo custom vars
         if: ${{ env.DAY_OF_WEEK == 'Mon' }}
         run: |
@@ -30,7 +27,27 @@ jobs:
         env:
             POSTGRES_HOST: postgres
             POSTGRES_PORT: 5432
-  demo2-job3:
+
+  Job_2:
+    runs-on: [ubuntu-latest]
+    strategy:
+      matrix:
+        include:
+          - node-version: 10.x
+            site: "prod"
+            datacenter: "site-A"
+          - node-version: 12.x
+            site: "dev"
+            datacenter: "site-B"
+    steps:
+      - name: Echo site details
+        env:
+          NODE_VERSION: ${{ matrix.node-version }}
+          SITE: ${{ matrix.site }}
+          DATACENTER: ${{ matrix.datacenter }}
+        run: echo $NODE_VERSION $SITE $DATACENTER
+          
+  Job_3:
     runs-on: [ubuntu-latest]
     steps:
       - name: Retrieve secret
