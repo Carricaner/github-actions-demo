@@ -1,0 +1,20 @@
+# This demo is to test `environment` tag.
+name: Test environment
+
+on: [push]
+
+jobs:
+  # Each job in a workflow can reference a single environment.
+  # Any protection rules configured for the environment must pass before a job referencing the environment is sent to a runner.
+  # The job can access the environment's secrets only after the job is sent to a runner.
+  test-env-1:
+    name: test-env
+    runs-on: ubuntu-latest
+    environment: 
+      name: developing
+      # specifying an URL for the environment
+      url: https://github.com
+    steps:
+      - name: Echo env secret
+        run: |
+          echo $TEST_NAME
