@@ -12,24 +12,42 @@ jobs:
       # You must use the checkout action any time your workflow will run against the repository's code or you are using an action defined in the repository.
       - name: Checkout repo
         uses: actions/checkout@v2
+
       # This step uses the actions/setup-node@v2 action to install the specified version of the node software package on the runner, 
       # which gives you access to the npm command.
       - name: Install Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '12'
+      
+      - uses: actions/cache@v2
+        id: caching-step
+        with:
+          # npm cache files are stored in `~/.npm` on linux/macOS.
+          path: ~/.npm
+          # cache key
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }} # Hash package-lock.json as key name to ensure the exact content.
+          # If there is no match in cache key, it will use below patterns to find it.
+          restore-keys: |
+            ${{ runner.os }}-node-
+      
       - name: Install node dependencies by running script
+        # Checking if any npm dependencies in the cache.
+        if: steps.caching-step.outputs.cache-hit != 'true'
         run: ./.github/scripts/npm-install.sh
         shell: bash
+      
       - name: Hello world action step
         id: hello
         # Here, after @, we can specify tag, SHAs or branch as indicator of which version to use.
         uses: actions/hello-world-javascript-action@main
         with:
           who-to-greet: 'Darren Li'
+      
       # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
+
   demo1-job2:
     runs-on: [ubuntu-latest]
     steps:
@@ -37,6 +55,7 @@ jobs:
         run: |
           expr 1 + 1 > output.log
         shell: bash
+      
       - name: Upload an artifect
         uses: actions/upload-artifact@v2
         with:
@@ -44,6 +63,7 @@ jobs:
           path: output.log
           # Specify artifect retention days
           retention-days: 5
+      
       - name: Download a single artifact
         uses: actions/download-artifact@v2
         # It is useful to download all artifects by not adding with tag below.
