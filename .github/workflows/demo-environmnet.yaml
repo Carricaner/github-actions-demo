@@ -11,9 +11,13 @@ jobs:
     name: test-env
     runs-on: ubuntu-latest
     environment: 
+      # for this environment, I specify a review (host) to check it before github putting this workflow to a runner.
       name: developing
       # specifying an URL for the environment
       url: https://github.com
+    env: 
+      # set environment secret as env here
+      TEST_NAME: ${{ secrets.TEST_NAME }}
     steps:
       - name: Echo env secret
         run: |
