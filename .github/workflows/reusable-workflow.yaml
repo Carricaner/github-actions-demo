@@ -1,6 +1,9 @@
+# Reusable workflows must be placed in .github/worflows/ directory. 
+# It doesn't work if we place Reusable workflows in any subdirectories below .github/worflows/ directory.
 name: Reusable workflow example
 
 on:
+  # If this workflow is reusable, we need to place 'workflow_call' tag after 'on' tag.
   workflow_call:
     inputs:
       username:
