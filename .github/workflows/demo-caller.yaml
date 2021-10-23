@@ -1,0 +1,14 @@
+name: Call a reusable workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  call-reusable-workflow-and-passing-data:
+    uses: darrenli1256/github-actions-demo/.github/workflows/reusable-workflow.yaml@main
+    with:
+      username: Mona
+    secrets:
+      token: TEST_SECRET
