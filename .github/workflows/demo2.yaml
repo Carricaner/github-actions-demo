@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   Job_1:
-    runs-on: [ubuntu-latest]
+    runs-on: ubuntu-latest
     env: 
       DAY_OF_WEEK: Mon
     steps:
@@ -29,7 +29,7 @@ jobs:
             POSTGRES_PORT: 5432
 
   Job_2:
-    runs-on: [ubuntu-latest]
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         include:
