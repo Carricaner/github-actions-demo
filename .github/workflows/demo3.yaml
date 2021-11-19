@@ -2,8 +2,8 @@ name: demo3
 
 on:
   schedule:
-    # runs every 5 minutes starting from minute 20 through 59 (minutes 25, 30, 35...).
-    - cron:  "25/5 * * * *"
+    # runs every minute starting from minute 25 through 59.
+    - cron:  '* * * * *'
 
 # Cronjob syntax:
 # ┌───────────── minute (0 - 59)
