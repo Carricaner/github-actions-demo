@@ -1,6 +1,14 @@
 name: demo1
 
-on: [push]
+# Trigger the workflow on push or pull request,
+# but only for the main branch
+# You must append a colon (:) to all events, including events without configuration.
+push:
+  branches:
+    - main
+pull_request:
+  branches:
+    - main
 
 jobs:
   # By default, the jobs in your workflow all run in parallel at the same time.
