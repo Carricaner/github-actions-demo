@@ -2,8 +2,9 @@ name: demo3
 
 on:
   schedule:
-    # runs every minute starting from minute 25 through 59.
-    - cron:  '* * * * *'
+    # runs every 5 minutes starting from minute 25 through 59.
+    # The shortest interval you can run scheduled workflows is once every 5 minutes.
+    - cron:  '0/5 * * * *'
 
 # Cronjob syntax:
 # ┌───────────── minute (0 - 59)
